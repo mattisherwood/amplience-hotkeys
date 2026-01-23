@@ -43,31 +43,57 @@ document.addEventListener("keydown", (event) => {
     overlay.innerHTML = `
       <style>
       #hotkey-help-overlay {
+        h3 {
+          text-align: right;
+          border-block: solid 1px #666;
+          color: #ccc;
+          padding-block: 5px;
+        }
         dl { display: grid; grid-template-columns: auto auto; }
         dt { text-align: left; font-weight: bold; }
         dd { text-align: right; }
       }
       </style>
       <h2>Amplience Hotkeys</h2>
-      <hr />
+      <h3>Selection Hotkeys</h3>
       <dl>
         <dt>Ctrl/Cmd + A</dt>
         <dd>Select all items</dd>
         <dt>Escape</dt>
         <dd>Deselect all items</dd>
+      </dl>
+      <h3>Action Hotkeys</h3>
+      <dl>
         <dt>E</dt>
         <dd>Archive selected items</dd>
+        <dt>P</dt>
+        <dd>Publish selected items</dd>
+        <dt>U</dt>
+        <dd>Unarchive selected items <em>(if in archive)</em><br/>
+        Assign a User to selected items <em>(if not in archive)</em></dd>
+      </dl>
+        <h3>Interface Hotkeys</h3>
+      <dl>
         <dt>F</dt>
-        <dd>Open filters panel</dd>
+        <dd>Toggle filters panel</dd>
         <dt>Ctrl/Cmd + F</dt>
         <dd>Focus search input</dd>
+      </dl>
+        <h3>Navigation Hotkeys</h3>
+      <dl>
+        <dt>1-4</dt>
+        <dd>Open corresponding top-level menu items</dd>
+        <dt>5-9, 0</dt>
+        <dd>Open corresponding items in "Developer" menu</dd>
+        <dt>A</dt>
+        <dd>Open the Archive of the current repository</dd>
+      </dl>
+        <h3>Help Hotkeys</h3>
+      <dl>
         <dt>H or ?</dt>
         <dd>Show this help overlay</dd>
       </dl>
-      <hr />
-      <p>Numbers take you to the corresponding top-level menu items</p>
-      <hr />
-      <p>Click anywhere or press any key to close this overlay.</p>
+      <p style="color: #ccc">Click anywhere or press any key to close this overlay.</p>
     `
 
     // Add event listener to remove overlay on click or key press
@@ -131,7 +157,53 @@ document.addEventListener("keydown", (event) => {
     }
   }
 
-  // Open filters panel with F
+  // Unarchive selected items with U (if in archive)
+  // Assign User to selected items with U (if not in archive)
+  if (event.key === "u" || event.key === "U") {
+    console.log("Unarchive/Assign User hotkey pressed")
+    const unarchiveButton = document.querySelector(
+      ".am-bulk-action-controls__button--unarchive",
+    )
+    const assignUserButton = document.querySelector(
+      ".am-workflow-assignee-chooser__btn",
+    )
+    if (unarchiveButton && !unarchiveButton.classList.contains("disabled")) {
+      unarchiveButton.click()
+      event.preventDefault() // Prevent default behavior
+    } else if (
+      assignUserButton &&
+      !assignUserButton.classList.contains("disabled")
+    ) {
+      assignUserButton.click()
+      event.preventDefault() // Prevent default behavior
+    }
+  }
+
+  // Publish selected items with P
+  if (event.key === "p" || event.key === "P") {
+    console.log("Publish hotkey pressed")
+    const publishButton = document.querySelector(
+      '[am-id="am-bulk-action-publish"]',
+    )
+    if (publishButton && !publishButton.classList.contains("disabled")) {
+      publishButton.click()
+      event.preventDefault() // Prevent default behavior
+    }
+  }
+
+  // Open archive of current repository with A
+  if (event.key === "a" || event.key === "A") {
+    console.log("Open Archive hotkey pressed")
+    const repoArchiveButton = document.querySelector(
+      ".am-repository--selected + am-content-folders > am-content-folders-tree > ul > li:last-child > .leaf-folder",
+    )
+    if (repoArchiveButton) {
+      repoArchiveButton.click()
+      event.preventDefault() // Prevent default behavior
+    }
+  }
+
+  // Open/Close filters panel with F
   if (
     !event.ctrlKey &&
     !event.metaKey &&

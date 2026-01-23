@@ -22,16 +22,24 @@ A Chrome extension that adds keyboard shortcuts to the Amplience Dynamic Content
 
 ## Available Hotkeys
 
-| Shortcut         | Action                                                              |
-| ---------------- | ------------------------------------------------------------------- |
-| **H** or **?**   | Show help overlay with all shortcuts                                |
-| **Ctrl/Cmd + A** | Select all items in the content list                                |
-| **Escape**       | Deselect all items (works even in input fields)                     |
-| **E**            | Archive selected items                                              |
-| **F**            | Open/toggle the filters panel                                       |
-| **Ctrl/Cmd + F** | Focus the search input box                                          |
-| **1-4**          | Navigate to top-level menu items (Content, Media, Events, Settings) |
-| **5-9, 0**       | Navigate to developer menu items                                    |
+| Shortcut         | Action                                                                                                |
+| ---------------- | ----------------------------------------------------------------------------------------------------- |
+|                  |                                                                                                       |
+| **Ctrl/Cmd + A** | Select all items in the content list                                                                  |
+| **Escape**       | Deselect all items (works even in input fields)                                                       |
+|                  |                                                                                                       |
+| **E**            | Archive selected items                                                                                |
+| **P**            | Publish selected items                                                                                |
+| **U**            | Unarchive selected items _(If in archive)_<br />Assign a User to selected items _(If not in archive)_ |
+|                  |                                                                                                       |
+| **F**            | Open/toggle the filters panel                                                                         |
+| **Ctrl/Cmd + F** | Focus the search input box                                                                            |
+|                  |                                                                                                       |
+| **1-4**          | Navigate to top-level menu items (Content, Media, Events, Settings)                                   |
+| **5-9, 0**       | Navigate to developer menu items                                                                      |
+| **A**            | Open the Archive of the current repository                                                            |
+|                  |                                                                                                       |
+| **H** or **?**   | Show help overlay with all shortcuts                                                                  |
 
 ## Usage Tips
 
@@ -109,6 +117,15 @@ For issues or questions:
 3. Open an issue on GitHub
 
 ## Changelog
+
+### v1.1
+
+- Add **A** to navigate to archive selected items
+- Add **P** to publish selected items
+- Add **U** to
+  - unarchive selected items _(if in archive)_
+  - assign User to selected items _(if not in archive)_
+- Categorise hotkeys in the help files
 
 ### v1.0
 
