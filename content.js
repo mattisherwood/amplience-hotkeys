@@ -1,7 +1,26 @@
 // Amplience Hotkeys - Content Script
 // Listen for keyboard events on Amplience content pages
 
+// Helper function to check if user is typing in an input field
+function isTypingInInput() {
+  const activeElement = document.activeElement
+  if (!activeElement) return false
+
+  const tagName = activeElement.tagName.toLowerCase()
+  const isInput = tagName === "input" || tagName === "textarea"
+  const isContentEditable = activeElement.isContentEditable
+
+  return isInput || isContentEditable
+}
+
 document.addEventListener("keydown", (event) => {
+  // Allow Escape key even when typing in an input
+  const isEscapeKey = event.key === "Escape"
+
+  // Skip all other hotkeys if user is typing in an input field
+  if (!isEscapeKey && isTypingInInput()) {
+    return
+  }
   // Show a help splash-screen overlay if "H" key is pressed
   if (event.key === "h" || event.key === "H" || event.key === "?") {
     // Create overlay element
@@ -19,15 +38,35 @@ document.addEventListener("keydown", (event) => {
     overlay.style.zIndex = "10000"
     overlay.style.fontSize = "16px"
     overlay.style.maxWidth = "80%"
+    overlay.style.minWidth = "360px"
     overlay.style.textAlign = "center"
     overlay.innerHTML = `
+      <style>
+      #hotkey-help-overlay {
+        dl { display: grid; grid-template-columns: auto auto; }
+        dt { text-align: left; font-weight: bold; }
+        dd { text-align: right; }
+      }
+      </style>
       <h2>Amplience Hotkeys</h2>
-      <p><strong>Ctrl/Cmd + A</strong>: Select all items</p>
-      <p><strong>Escape</strong>: Deselect all items</p>
-      <p><strong>E</strong>: Archive selected items</p>
-      <p><strong>F</strong>: Open filters panel</p>
-      <p><strong>Ctrl/Cmd + F</strong>: Focus search input</p>
-      <p><strong>H or ?</strong>: Show this help overlay</p>
+      <hr />
+      <dl>
+        <dt>Ctrl/Cmd + A</dt>
+        <dd>Select all items</dd>
+        <dt>Escape</dt>
+        <dd>Deselect all items</dd>
+        <dt>E</dt>
+        <dd>Archive selected items</dd>
+        <dt>F</dt>
+        <dd>Open filters panel</dd>
+        <dt>Ctrl/Cmd + F</dt>
+        <dd>Focus search input</dd>
+        <dt>H or ?</dt>
+        <dd>Show this help overlay</dd>
+      </dl>
+      <hr />
+      <p>Numbers take you to the corresponding top-level menu items</p>
+      <hr />
       <p>Click anywhere or press any key to close this overlay.</p>
     `
 
@@ -113,6 +152,31 @@ document.addEventListener("keydown", (event) => {
     const searchInput = document.querySelector("am-search-box input")
     if (searchInput) {
       searchInput.focus()
+      event.preventDefault() // Prevent default behavior
+    }
+  }
+
+  // Shortcut numbers 1-9 and 0 to open corresponding menu items
+  const numberKey = parseInt(event.key, 10)
+  const index = numberKey === 0 ? 9 : numberKey - 1
+  const topLevelMenuItems = document.querySelectorAll(
+    '[name="mainMenu"] > md-menu-bar > button',
+  )
+  // Numbers 1-4 are on the top-level menu
+  if (index >= 0 && index <= 3) {
+    if (topLevelMenuItems[index]) {
+      topLevelMenuItems[index].click()
+      event.preventDefault() // Prevent default behavior
+    }
+  }
+  // Numbers 5-9 and 0 are hidden in the "Developer" menu
+  if (index >= 4 && index <= 9) {
+    const developerMenuItems = document.querySelectorAll(
+      ".masthead__mainMenu-button--list .am-masthead-menu__action",
+    )
+    const developerMenuIndex = index - 4
+    if (developerMenuItems[developerMenuIndex]) {
+      developerMenuItems[developerMenuIndex].click()
       event.preventDefault() // Prevent default behavior
     }
   }
