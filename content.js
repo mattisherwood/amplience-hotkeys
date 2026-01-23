@@ -284,27 +284,29 @@ document.addEventListener("keydown", (event) => {
   }
 
   // Shortcut numbers 1-9 and 0 to open corresponding menu items
-  const numberKey = parseInt(event.key, 10)
-  const index = numberKey === 0 ? 9 : numberKey - 1
-  const topLevelMenuItems = document.querySelectorAll(
-    '[name="mainMenu"] > md-menu-bar > button',
-  )
-  // Numbers 1-4 are on the top-level menu
-  if (index >= 0 && index <= 3) {
-    if (topLevelMenuItems[index]) {
-      topLevelMenuItems[index].click()
-      event.preventDefault() // Prevent default behavior
-    }
-  }
-  // Numbers 5-9 and 0 are hidden in the "Developer" menu
-  if (index >= 4 && index <= 9) {
-    const developerMenuItems = document.querySelectorAll(
-      ".masthead__mainMenu-button--list .am-masthead-menu__action",
+  if (!event.ctrlKey && !event.metaKey && /^[0-9]$/.test(event.key)) {
+    const numberKey = parseInt(event.key, 10)
+    const index = numberKey === 0 ? 9 : numberKey - 1
+    const topLevelMenuItems = document.querySelectorAll(
+      '[name="mainMenu"] > md-menu-bar > button',
     )
-    const developerMenuIndex = index - 4
-    if (developerMenuItems[developerMenuIndex]) {
-      developerMenuItems[developerMenuIndex].click()
-      event.preventDefault() // Prevent default behavior
+    // Numbers 1-4 are on the top-level menu
+    if (index >= 0 && index <= 3) {
+      if (topLevelMenuItems[index]) {
+        topLevelMenuItems[index].click()
+        event.preventDefault() // Prevent default behavior
+      }
+    }
+    // Numbers 5-9 and 0 are hidden in the "Developer" menu
+    if (index >= 4 && index <= 9) {
+      const developerMenuItems = document.querySelectorAll(
+        ".masthead__mainMenu-button--list .am-masthead-menu__action",
+      )
+      const developerMenuIndex = index - 4
+      if (developerMenuItems[developerMenuIndex]) {
+        developerMenuItems[developerMenuIndex].click()
+        event.preventDefault() // Prevent default behavior
+      }
     }
   }
 })

@@ -120,6 +120,11 @@ For issues or questions:
 
 ## Changelog
 
+### v1.2.1
+
+- Allow Ctrl+numbers to still do their usual jobs\
+  (e.g. Ctrl+0 resets the zoom)
+
 ### v1.2
 
 - Add **C** to create a new content item
