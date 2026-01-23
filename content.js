@@ -64,10 +64,14 @@ document.addEventListener("keydown", (event) => {
       </dl>
       <h3>Action Hotkeys</h3>
       <dl>
+        <dt>C</dt>
+        <dd>Create a content item</dd>
         <dt>E</dt>
         <dd>Archive selected items</dd>
         <dt>P</dt>
         <dd>Publish selected items</dd>
+        <dt>S or Ctrl/Cmd + S</dt>
+        <dd>Save changes to the current item</dd>
         <dt>U</dt>
         <dd>Unarchive selected items <em>(if in archive)</em><br/>
         Assign a User to selected items <em>(if not in archive)</em></dd>
@@ -112,6 +116,38 @@ document.addEventListener("keydown", (event) => {
     document.body.appendChild(overlay)
   }
 
+  // Only allow specific hotkeys when the create content modal is open
+  const createContentModal = document.querySelector(
+    '[aria-label="Choose a content type"]',
+  )
+  if (createContentModal) {
+    if (event.key === "Escape") {
+      // If the Create Content modal is open, close it instead of deselecting items
+      const closeButton = createContentModal.querySelector(
+        ".am-browser-close-button",
+      )
+      if (closeButton) {
+        closeButton.click()
+        event.preventDefault() // Prevent default behavior
+      }
+    }
+
+    // Focus search input with Ctrl/Cmd + F
+    if (
+      (event.ctrlKey || event.metaKey) &&
+      (event.key === "f" || event.key === "F")
+    ) {
+      const searchInput = createContentModal.querySelector(
+        "am-search-box input",
+      )
+      if (searchInput) {
+        searchInput.focus()
+        event.preventDefault() // Prevent default behavior
+      }
+    }
+    return // Important so it doesn't trigger other hotkeys
+  }
+
   // Select all items with Ctrl+A or Cmd+A
   if (
     (event.ctrlKey || event.metaKey) &&
@@ -146,6 +182,17 @@ document.addEventListener("keydown", (event) => {
     }
   }
 
+  // Create new content item with C
+  if (event.key === "c" || event.key === "C") {
+    const createButton = document.querySelector(
+      '[am-id="am-content-item-library__create-btn--content"]',
+    )
+    if (createButton) {
+      createButton.click()
+      event.preventDefault() // Prevent default behavior
+    }
+  }
+
   // Archive selected items with E
   if (event.key === "e" || event.key === "E") {
     const archiveButton = document.querySelector(
@@ -160,7 +207,6 @@ document.addEventListener("keydown", (event) => {
   // Unarchive selected items with U (if in archive)
   // Assign User to selected items with U (if not in archive)
   if (event.key === "u" || event.key === "U") {
-    console.log("Unarchive/Assign User hotkey pressed")
     const unarchiveButton = document.querySelector(
       ".am-bulk-action-controls__button--unarchive",
     )
@@ -179,11 +225,21 @@ document.addEventListener("keydown", (event) => {
     }
   }
 
+  // Save changes to the current item with S
+  if (event.key === "s" || event.key === "S") {
+    const saveButton = document.querySelector(
+      '[am-id="am-editor-action-controls__btn--save"]',
+    )
+    if (saveButton && !saveButton.classList.contains("disabled")) {
+      saveButton.click()
+      event.preventDefault() // Prevent default behavior
+    }
+  }
+
   // Publish selected items with P
   if (event.key === "p" || event.key === "P") {
-    console.log("Publish hotkey pressed")
     const publishButton = document.querySelector(
-      '[am-id="am-bulk-action-publish"]',
+      '[am-id="am-editor-action-controls__btn--save"], [am-id="am-bulk-action-publish"]',
     )
     if (publishButton && !publishButton.classList.contains("disabled")) {
       publishButton.click()
@@ -193,7 +249,6 @@ document.addEventListener("keydown", (event) => {
 
   // Open archive of current repository with A
   if (event.key === "a" || event.key === "A") {
-    console.log("Open Archive hotkey pressed")
     const repoArchiveButton = document.querySelector(
       ".am-repository--selected + am-content-folders > am-content-folders-tree > ul > li:last-child > .leaf-folder",
     )

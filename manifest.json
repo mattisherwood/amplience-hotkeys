@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Amplience Hotkeys",
-  "version": "1.1",
+  "version": "1.2",
   "description": "Add hotkeys for Amplience Dynamic Content",
   "permissions": ["storage"],
   "host_permissions": ["https://app.amplience.net/content*"],

@@ -22,24 +22,26 @@ A Chrome extension that adds keyboard shortcuts to the Amplience Dynamic Content
 
 ## Available Hotkeys
 
-| Shortcut         | Action                                                                                                |
-| ---------------- | ----------------------------------------------------------------------------------------------------- |
-|                  |                                                                                                       |
-| **Ctrl/Cmd + A** | Select all items in the content list                                                                  |
-| **Escape**       | Deselect all items (works even in input fields)                                                       |
-|                  |                                                                                                       |
-| **E**            | Archive selected items                                                                                |
-| **P**            | Publish selected items                                                                                |
-| **U**            | Unarchive selected items _(If in archive)_<br />Assign a User to selected items _(If not in archive)_ |
-|                  |                                                                                                       |
-| **F**            | Open/toggle the filters panel                                                                         |
-| **Ctrl/Cmd + F** | Focus the search input box                                                                            |
-|                  |                                                                                                       |
-| **1-4**          | Navigate to top-level menu items (Content, Media, Events, Settings)                                   |
-| **5-9, 0**       | Navigate to developer menu items                                                                      |
-| **A**            | Open the Archive of the current repository                                                            |
-|                  |                                                                                                       |
-| **H** or **?**   | Show help overlay with all shortcuts                                                                  |
+| Shortcut              | Action                                                                                                |
+| --------------------- | ----------------------------------------------------------------------------------------------------- |
+|                       |                                                                                                       |
+| **Ctrl/Cmd+A**        | Select all items in the content list                                                                  |
+| **Escape**            | Deselect all items (works even in input fields)                                                       |
+|                       |                                                                                                       |
+| **C**                 | Create a new content item                                                                             |
+| **E**                 | Archive selected items                                                                                |
+| **P**                 | Publish selected items                                                                                |
+| **U**                 | Unarchive selected items _(If in archive)_<br />Assign a User to selected items _(If not in archive)_ |
+| **S _or_ Ctrl/Cmd+S** | Save current item                                                                                     |
+|                       |                                                                                                       |
+| **F**                 | Open/toggle the filters panel                                                                         |
+| **Ctrl/Cmd+F**        | Focus the search input box                                                                            |
+|                       |                                                                                                       |
+| **1-4**               | Navigate to top-level menu items (Content, Media, Events, Settings)                                   |
+| **5-9, 0**            | Navigate to developer menu items                                                                      |
+| **A**                 | Open the Archive of the current repository                                                            |
+|                       |                                                                                                       |
+| **H** _or_ **?**      | Show help overlay with all shortcuts                                                                  |
 
 ## Usage Tips
 
@@ -117,6 +119,12 @@ For issues or questions:
 3. Open an issue on GitHub
 
 ## Changelog
+
+### v1.2
+
+- Add **C** to create a new content item
+- Update/limit hotkeys when createContent modal is open
+- Add **S _or_ Ctrl / Cmd + S** to save content item
 
 ### v1.1
 
