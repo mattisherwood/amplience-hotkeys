@@ -34,33 +34,75 @@ If you wish to update the extension, merely re-run the above steps but upload th
 
 ## Available Hotkeys
 
-| Shortcut              | Action                                                                                                |
-| --------------------- | ----------------------------------------------------------------------------------------------------- |
-|                       |                                                                                                       |
-| **Ctrl/Cmd+A**        | Select all items in the content list                                                                  |
-| **Escape**            | Deselect all items (works even in input fields)                                                       |
-|                       |                                                                                                       |
-| **C**                 | Create a new content item                                                                             |
-| **E**                 | Archive selected items                                                                                |
-| **P**                 | Publish selected items                                                                                |
-| **U**                 | Unarchive selected items _(If in archive)_<br />Assign a User to selected items _(If not in archive)_ |
-| **S _or_ Ctrl/Cmd+S** | Save current item                                                                                     |
-|                       |                                                                                                       |
-| **F**                 | Open/toggle the filters panel                                                                         |
-| **Ctrl/Cmd+F**        | Focus the search input box                                                                            |
-|                       |                                                                                                       |
-| **1-4**               | Navigate to top-level menu items (Content, Media, Events, Settings)                                   |
-| **5-9, 0**            | Navigate to developer menu items                                                                      |
-| **A**                 | Open the Archive of the current repository                                                            |
-|                       |                                                                                                       |
-| **H** _or_ **?**      | Show help overlay with all shortcuts                                                                  |
+### Global
+
+|     | Navigation (follows top-nav) |
+| --- | ---------------------------- |
+| 1   | Dashboard                    |
+| 2   | Content                      |
+| 3   | Assets                       |
+| 4   | Scheduling                   |
+| 5   | Content Type Schemas         |
+| 6   | Content Types                |
+| 7   | Extensions                   |
+| 8   | Webhooks                     |
+| 9   | Personal Access Tokens       |
+| 0   | Integrations                 |
+
+|     | Help                            |
+| --- | ------------------------------- |
+| ?   | Show overlay with all shortcuts |
+
+### Listing Page
+
+|     | Actions                               |
+| --- | ------------------------------------- |
+| A   | Assign a user to selected Items       |
+| C   | Create a content item                 |
+| D   | Duplicate selected items              |
+| E   | Archive selected items                |
+| L   | Localize selected items               |
+| P   | Publish selected items                |
+| U   | Unpublish or Unarchive selected items |
+
+|          | Interface                 |
+| -------- | ------------------------- |
+| F        | Show/hide Filters         |
+| V        | Toggle View (list / grid) |
+| Ctrl + F | Find                      |
+| →        | Next page                 |
+| ←        | Previous page             |
+
+|          | Selection                         |
+| -------- | --------------------------------- |
+| Ctrl + A | Select all items                  |
+| Esc      | Close modal or Deselect all items |
+
+### Editor Page
+
+|                  | Actions                     |
+| ---------------- | --------------------------- |
+| A                | Assign a user               |
+| D                | Set delivery key            |
+| E                | Archive item                |
+| L                | Localize item               |
+| P                | Publish item                |
+| U                | Unpublish or Unarchive item |
+| Ctrl + S         | Save                        |
+| Ctrl + Shift + S | Save as...                  |
+| Esc              | Cancel editing              |
+
+|     | Interface                     |
+| --- | ----------------------------- |
+| H   | Show/hide History panel       |
+| I   | Show/hide Info (props) panel  |
+| S   | Show/hide Scheduling panel    |
+| V   | Show/hide Visualization panel |
 
 ## Usage Tips
 
-- Press **H** or **?** anytime to view the help overlay
+- Remember you can press **?** at anytime to view the help overlay
 - Hotkeys are automatically disabled when typing in input fields to prevent accidental actions
-- The **Escape** key always works, even in input fields, to quickly deselect items
-- Number keys provide quick access to navigation menu items
 
 ## Browser Compatibility
 
@@ -132,6 +174,17 @@ For issues or questions:
 
 ## Changelog
 
+### v1.3
+
+- Drop **A** for navigating to archive
+- Make **A** consistently "Assign user"\
+  _(NB: There is still a known bug with the core assign-user button)_
+- Add **D** for Duplicate
+- Add **L** for Localize
+- Standardise to match across listing and editor pages where possible
+- Group hotkeys into Global / Listing Page / Editor Page contexts
+- Update help files to reflect that
+
 ### v1.2.1
 
 - Allow Ctrl+numbers to still do their usual jobs\
@@ -145,7 +198,7 @@ For issues or questions:
 
 ### v1.1
 
-- Add **A** to navigate to archive selected items
+- Add **A** to navigate to archive
 - Add **P** to publish selected items
 - Add **U** to
   - unarchive selected items _(if in archive)_
