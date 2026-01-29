@@ -28,6 +28,10 @@ _Here are steps 2-5 in action. (Also installing our two other browser extensions
 
 _**TIP:** While you're in the extension manager; if you click **Details** on the extension you can select **'Allow in Icongito'** if you wish it to also be applied to incognito windows._
 
+### Updating to newer versions
+
+If you wish to update the extension, merely re-run the above steps but upload the newer version of the folder. It will automatically replace the old one. Then refresh the tab and it'll be applied.
+
 ## Available Hotkeys
 
 | Shortcut              | Action                                                                                                |
