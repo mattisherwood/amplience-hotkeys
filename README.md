@@ -11,14 +11,22 @@ A Chrome extension that adds keyboard shortcuts to the Amplience Dynamic Content
 
 ## Installation
 
-### From Source (Developer Mode)
-
 1. Download or clone this repository
-2. Open Chrome and navigate to `chrome://extensions/`
-3. Enable **Developer mode** (toggle in the top right corner)
+
+2. Open Chrome and go to `chrome://extensions/`
+
+3. Enable **Developer mode** (top right)
+
 4. Click **Load unpacked**
-5. Select the `amplience-hotkeys` folder
-6. The extension will now be active on `https://app.amplience.net/content/*`
+
+5. Select the `amplience-hotkeys` folder you downloaded in step 1
+
+The extension will now be active on `https://app.amplience.net/content/*`
+
+![Installing Custom Browser Extensions](screenshots/installing-custom-browser-extensions.gif)
+_Here are steps 2-5 in action. (Also installing our two other browser extensions - [Amplience Patches](https://github.com/mattisherwood/amplience-patches) and [Favicon Swapper](https://github.com/mattisherwood/favicon-swapper))_
+
+_**TIP:** While you're in the extension manager; if you click **Details** on the extension you can select **'Allow in Icongito'** if you wish it to also be applied to incognito windows._
 
 ## Available Hotkeys
 
